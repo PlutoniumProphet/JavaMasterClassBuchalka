@@ -1,12 +1,12 @@
 public class NumberToWords {
     public static void main(String[] args) {
-
+        System.out.println(numberToWords(123));
         //TODO
     }
 
-    public static void numberToWords(int number) {
-        //TODO
+    public static StringBuilder numberToWords(int number) {
 
+        StringBuilder wordList = new StringBuilder();
         while (number > 0) {
             int lastDigit = number % 10;
 
@@ -24,12 +24,11 @@ public class NumberToWords {
                 default -> "Invalid Value";
             };
 
-
-            StringBuilder wordList = new StringBuilder();
             wordList.append(numberAsWord).append(" ");
 
-            number -= 1;
+            number /= 10; // remove right-most digit
         }
+        return wordList;
     }
 
     public static String reverse(int number) {
