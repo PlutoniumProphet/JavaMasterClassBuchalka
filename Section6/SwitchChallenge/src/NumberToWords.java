@@ -1,14 +1,22 @@
 public class NumberToWords {
     public static void main(String[] args) {
+        System.out.println(numberToWords(123));
+        System.out.println(numberToWords(100));
+        System.out.println((numberToWords(-2)));
 
-        //TODO
     }
 
-    public static void numberToWords(int number) {
-        //TODO
+    public static StringBuilder numberToWords(int number) {
 
-        while (number > 0) {
-            int lastDigit = number % 10;
+        if (number < 0) {
+            return new StringBuilder("Invalid Value");
+        }
+
+        int revNumber = reverse(number); // handle the number coming out reversed
+        StringBuilder wordList = new StringBuilder();
+
+        for (int i = 0; i < getDigitCount(number); i++) {
+            int lastDigit = revNumber % 10;
 
             String numberAsWord = switch (lastDigit) {
                 case 0 -> "Zero";
@@ -24,16 +32,31 @@ public class NumberToWords {
                 default -> "Invalid Value";
             };
 
-
-            StringBuilder wordList = new StringBuilder();
             wordList.append(numberAsWord).append(" ");
-
-            number -= 1;
+            revNumber /= 10; // drop the last digit from the loop
         }
+        return wordList;
     }
 
-    public static String reverse(int number) {
-        //TODO
-        return null;
+    public static int reverse(int number) {
+        int reverse = 0;
+        while (number != 0) {
+            int remainder = number % 10;
+            reverse = reverse * 10 + remainder;
+            number /= 10;
+        }
+        return reverse;
+    }
+
+    public static int getDigitCount(int number) {
+        if (number < 0) {
+            return -1;
+        }
+        int counter = 1;
+        while (number > 9) {
+            number /= 10;
+            counter ++;
+        }
+        return counter;
     }
 }
