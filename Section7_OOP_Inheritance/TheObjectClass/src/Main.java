@@ -1,3 +1,5 @@
+package TheObjectClass.src;
+
 public class Main extends Object{
 
     public static void main(String[] args) {
@@ -21,7 +23,7 @@ class Student {
         this.age = age;
     }
 
-//    @Override
+//    @Override #this is redundent default
 //    public String toString() {
 //        return super.toString();
 //    }
